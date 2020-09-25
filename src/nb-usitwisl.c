@@ -46,10 +46,10 @@ inline static void SET_USI_SCL_AS_INPUT(void) __attribute__((always_inline));
 inline static void SET_USI_SDA_AND_SCL_AS_OUTPUT(void) __attribute__((always_inline));
 inline static void SET_USI_SDA_AND_SCL_AS_INPUT(void) __attribute__((always_inline));
 
-/*  _______________________________
-   |                               |
-   | USI TWI driver initialization |
-   |_______________________________|
+/* _______________________________
+  |                               |
+  | USI TWI driver initialization |
+  |_______________________________|
 */
 void UsiTwiDriverInit(uint8_t address) {
     // Initialize USI for TWI Slave mode.
@@ -63,10 +63,10 @@ void UsiTwiDriverInit(uint8_t address) {
     SET_USI_TO_WAIT_FOR_TWI_ADDRESS();     /* Wait for TWI start condition and address from master */
 }
 
-/*  ___________________________
-   |                           |
-   | USI TWI byte transmission |
-   |___________________________|
+/* ___________________________
+  |                           |
+  | USI TWI byte transmission |
+  |___________________________|
 */
 void UsiTwiTransmitByte(uint8_t data_byte) {
     tx_head = ((tx_head + 1) & TWI_TX_BUFFER_MASK); /* Update the TX buffer index */
@@ -75,10 +75,10 @@ void UsiTwiTransmitByte(uint8_t data_byte) {
     tx_buffer[tx_head] = data_byte; /* Write the data byte into the TX buffer */
 }
 
-/*  ___________________________
-   |                           |
-   | USI TWI byte reception    |
-   |___________________________|
+/* ___________________________
+  |                           |
+  | USI TWI byte reception    |
+  |___________________________|
 */
 uint8_t UsiTwiReceiveByte(void) {
     while (rx_byte_count-- == 0) {
@@ -87,10 +87,10 @@ uint8_t UsiTwiReceiveByte(void) {
     return rx_buffer[rx_tail];                      /* Return data from the buffer */
 }
 
-/*  _______________________________________________
-   |                                               |
-   | USI start condition interrupt service routine |
-   |_______________________________________________|
+/* _______________________________________________
+  |                                               |
+  | USI start condition interrupt service routine |
+  |_______________________________________________|
 */
 ISR(USI_START_VECTOR) {
     SET_USI_SDA_AS_INPUT(); /* Float the SDA line */
@@ -117,10 +117,10 @@ ISR(USI_START_VECTOR) {
     SET_USI_TO_SHIFT_8_ADDRESS_BITS();
 }
 
-/*  ______________________________________________
-   |                                              |
-   | USI 4-bit overflow interrupt service routine |
-   |______________________________________________|
+/* ______________________________________________
+  |                                              |
+  | USI 4-bit overflow interrupt service routine |
+  |______________________________________________|
 */
 ISR(USI_OVERFLOW_VECTOR) {
     switch (twi_driver_state) {
