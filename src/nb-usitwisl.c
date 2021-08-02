@@ -14,9 +14,6 @@
 // Includes
 #include "nb-usitwisl.h"
 
-#include <avr/interrupt.h>
-#include <avr/io.h>
-
 // USI TWI driver globals
 uint8_t twi_addr = 0;
 uint8_t rx_buffer[TWI_RX_BUFFER_SIZE];
